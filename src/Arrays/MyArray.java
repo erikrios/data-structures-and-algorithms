@@ -39,21 +39,13 @@ public class MyArray extends Array {
         if (index < 0 || index >= count)
             throw new IllegalArgumentException();
 
-        int[] newNumbers = new int[count];
+        resizeIfRequired();
 
-        if (numbers.length == count)
-            newNumbers = new int[count * 2];
+        for (int i = count - 1; i >= index; i--)
+            numbers[i + 1] = numbers[i];
 
+        numbers[index] = item;
         count++;
-        for (int i = 0; i < count; i++) {
-            if (i == index)
-                newNumbers[index] = item;
-            else if (i < index)
-                newNumbers[i] = numbers[i];
-            else
-                newNumbers[i] = numbers[i - 1];
-        }
 
-        numbers = newNumbers;
     }
 }
