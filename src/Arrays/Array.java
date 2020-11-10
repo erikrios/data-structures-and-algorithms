@@ -9,15 +9,8 @@ public class Array {
     }
 
     void insert(int item) {
-        if (numbers.length == count) {
-            int[] newNumbers = new int[count * 2];
 
-            for (int i = 0; i < count; i++)
-                newNumbers[i] = numbers[i];
-
-            numbers = newNumbers;
-        }
-
+        resizeIfRequired();
         numbers[count++] = item;
     }
 
@@ -42,5 +35,16 @@ public class Array {
     void print() {
         for (int i = 0; i < count; i++)
             System.out.println(numbers[i]);
+    }
+
+    protected void resizeIfRequired() {
+        if (numbers.length == count) {
+            int[] newNumbers = new int[count * 2];
+
+            for (int i = 0; i < count; i++)
+                newNumbers[i] = numbers[i];
+
+            numbers = newNumbers;
+        }
     }
 }
