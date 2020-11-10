@@ -16,39 +16,14 @@ public class MyArray extends Array {
         return largest;
     }
 
-    int[] intersect(int[] others) {
-        int[] longestNumbers;
-        int[] shortestNumbers;
+    Array intersect(Array others) {
+        Array intersection = new Array(count);
 
-        if (count > others.length) {
-            longestNumbers = new int[count];
-            for (int i = 0; i < count; i++)
-                longestNumbers[i] = numbers[i];
+        for (int number : numbers)
+            if (others.indexOf(number) >= 0)
+                intersection.insert(number);
 
-            shortestNumbers = others;
-        } else {
-            longestNumbers = others;
-
-            shortestNumbers = new int[count];
-            for (int i = 0; i < count; i++)
-                shortestNumbers[i] = numbers[i];
-        }
-
-        int[] numbers = new int[shortestNumbers.length];
-        int index = 0;
-
-        for (int i = 0; i < shortestNumbers.length; i++)
-            for (int j = 0; j < longestNumbers.length; j++) {
-                if (shortestNumbers[i] == longestNumbers[j])
-                    numbers[index++] = shortestNumbers[i];
-            }
-
-        int[] intersectNumbers = new int[index];
-
-        for (int i = 0; i < index; i++)
-            intersectNumbers[i] = numbers[i];
-
-        return intersectNumbers;
+        return intersection;
     }
 
     void reverse() {
