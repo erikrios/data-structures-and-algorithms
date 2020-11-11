@@ -4,7 +4,7 @@ public class LinkedList {
     private Node first;
     private Node last;
 
-    void addFirst(int item) {
+    public void addFirst(int item) {
         Node node = new Node(item);
 
         if (isEmpty())
@@ -15,7 +15,7 @@ public class LinkedList {
         }
     }
 
-    void addLast(int item) {
+    public void addLast(int item) {
         Node node = new Node(item);
 
         if (isEmpty())
@@ -24,6 +24,20 @@ public class LinkedList {
             last.next = node;
             last = node;
         }
+    }
+
+    public int indexOf(int item) {
+        int index = 0;
+        Node current = first;
+
+        while (current != null) {
+            if (current.value == item)
+                return index;
+            current = current.next;
+            index++;
+        }
+
+        return -1;
     }
 
     private boolean isEmpty() {
