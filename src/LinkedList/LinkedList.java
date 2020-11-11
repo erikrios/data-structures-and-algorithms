@@ -85,6 +85,20 @@ public class LinkedList {
         return size;
     }
 
+    public int[] toArray() {
+        int[] items = new int[size];
+        Node current = first;
+
+        int index = 0;
+
+        while (current != null) {
+            items[index++] = current.value;
+            current = current.next;
+        }
+
+        return items;
+    }
+
     private boolean isEmpty() {
         return first == null;
     }
