@@ -9,5 +9,6 @@ public class Main {
         list.addLast(8);
         list.addFirst(9);
         System.out.println(list.indexOf(15));
+        System.out.println(list.contains(10));
     }
 }
