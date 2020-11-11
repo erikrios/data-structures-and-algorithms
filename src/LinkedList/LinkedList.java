@@ -4,6 +4,17 @@ public class LinkedList {
     private Node first;
     private Node last;
 
+    void addFirst(int item) {
+        Node node = new Node(item);
+
+        if (first == null)
+            first = last = node;
+        else {
+            node.next = first;
+            first = node;
+        }
+    }
+
     void addLast(int item) {
         Node node = new Node(item);
 

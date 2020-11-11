@@ -7,5 +7,6 @@ public class Main {
         list.addLast(10);
         list.addLast(15);
         list.addLast(8);
+        list.addFirst(9);
     }
 }
