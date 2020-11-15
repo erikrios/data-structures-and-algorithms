@@ -100,7 +100,15 @@ public class LinkedList {
     }
 
     public void reverse() {
+        int[] numbers = this.toArray();
 
+        int count = 0;
+
+        while (count < numbers.length) {
+            this.removeLast();
+            this.addFirst(numbers[count]);
+            count++;
+        }
     }
 
     private boolean isEmpty() {

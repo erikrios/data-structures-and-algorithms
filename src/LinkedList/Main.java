@@ -12,6 +12,7 @@ public class Main {
         list.addFirst(9);
         list.removeFirst();
         list.removeLast();
+        list.reverse();
         System.out.println(list.indexOf(15));
         System.out.println(list.contains(10));
         System.out.println(list.size());
