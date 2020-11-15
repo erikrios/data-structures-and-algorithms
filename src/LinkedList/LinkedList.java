@@ -99,7 +99,7 @@ public class LinkedList {
         return items;
     }
 
-    public LinkedList reverse() {
+    public void reverse() {
 
     }
 
