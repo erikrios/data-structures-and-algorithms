@@ -99,6 +99,10 @@ public class LinkedList {
         return items;
     }
 
+    public LinkedList reverse() {
+
+    }
+
     private boolean isEmpty() {
         return first == null;
     }
