@@ -5,5 +5,9 @@ public class Main {
         String name = "Erik Rio Setiawan";
         StringReverser reverser = new StringReverser();
         System.out.println(reverser.reverse(name));
+
+        String balancedString = "(([1] + <2>)) [a]";
+        Expression expression = new Expression();
+        System.out.println(expression.isBalanced(balancedString));
     }
 }
