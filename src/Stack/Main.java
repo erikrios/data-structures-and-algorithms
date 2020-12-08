@@ -19,6 +19,7 @@ public class Main {
         System.out.println(popValue);
         System.out.println(peekValue);
         System.out.println(stack.isEmpty());
+        System.out.println(stack.min());
         System.out.println(stack);
     }
 }
