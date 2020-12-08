@@ -9,7 +9,6 @@ public class Stack {
 
     public Stack() {
         items = new int[capacity];
-        length = 0;
     }
 
     public void push(int item) {
@@ -27,6 +26,15 @@ public class Stack {
     public int peek() {
         if (isEmpty()) throw new IllegalStateException();
         return items[length - 1];
+    }
+
+    public int min() {
+        if (isEmpty()) throw new IllegalStateException();
+        int min = items[0];
+        for (int i = 0; i < length; i++) {
+            if (items[i] < min) min = items[i];
+        }
+        return min;
     }
 
     public int[] toArray() {
