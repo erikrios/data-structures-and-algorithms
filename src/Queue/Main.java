@@ -11,6 +11,7 @@ public class Main {
         queue.add(20);
         queue.add(30);
         int top = queue.remove();
+        ReversingQueue.reverse(queue);
 
         System.out.println(top);
         System.out.println(queue);
