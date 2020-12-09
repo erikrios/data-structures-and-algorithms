@@ -14,6 +14,7 @@ public class Main {
         queue.enqueue(7);
         queue.dequeue();
         queue.enqueue(8);
+        System.out.println(front);
         System.out.println(queue.peek());
         System.out.println(queue.isEmpty());
         System.out.println(queue.isFull());
