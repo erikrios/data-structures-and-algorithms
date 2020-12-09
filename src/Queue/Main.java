@@ -1,19 +1,22 @@
 package Queue;
 
-import java.util.ArrayDeque;
-import java.util.Queue;
-
 public class Main {
     public static void main(String[] args) {
-        Queue<Integer> queue = new ArrayDeque<>();
-
-        queue.add(10);
-        queue.add(20);
-        queue.add(30);
-        int top = queue.remove();
-        ReversingQueue.reverse(queue);
-
-        System.out.println(top);
+        ArrayQueue queue = new ArrayQueue(5);
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+        queue.dequeue();
+        int front = queue.dequeue();
+        queue.enqueue(4);
+        queue.enqueue(5);
+        queue.enqueue(6);
+        queue.enqueue(7);
+        queue.dequeue();
+        queue.enqueue(8);
+        System.out.println(queue.peek());
+        System.out.println(queue.isEmpty());
+        System.out.println(queue.isFull());
         System.out.println(queue);
     }
 }
