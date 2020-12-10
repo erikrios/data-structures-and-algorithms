@@ -2,16 +2,12 @@ package Queue;
 
 public class Main {
     public static void main(String[] args) {
-        StackQueue stackQueue = new StackQueue();
-        stackQueue.enqueue(1);
-        stackQueue.enqueue(2);
-        stackQueue.enqueue(3);
-        stackQueue.enqueue(4);
-        stackQueue.enqueue(5);
-        int dequeue = stackQueue.dequeue();
-        int peek = stackQueue.peek();
-        System.out.println(stackQueue.isEmpty());
-        System.out.println(dequeue);
-        System.out.println(peek);
+        PriorityQueue queue = new PriorityQueue(5);
+        queue.add(5);
+        queue.add(3);
+        queue.add(8);
+        queue.add(2);
+        queue.add(1);
+        System.out.println(queue);
     }
 }
