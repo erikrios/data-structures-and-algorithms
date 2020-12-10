@@ -2,22 +2,16 @@ package Queue;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayQueue queue = new ArrayQueue(5);
-        queue.enqueue(1);
-        queue.enqueue(2);
-        queue.enqueue(3);
-        queue.dequeue();
-        int front = queue.dequeue();
-        queue.enqueue(4);
-        queue.enqueue(5);
-        queue.enqueue(6);
-        queue.enqueue(7);
-        queue.dequeue();
-        queue.enqueue(8);
-        System.out.println(front);
-        System.out.println(queue.peek());
-        System.out.println(queue.isEmpty());
-        System.out.println(queue.isFull());
-        System.out.println(queue);
+        StackQueue stackQueue = new StackQueue();
+        stackQueue.enqueue(1);
+        stackQueue.enqueue(2);
+        stackQueue.enqueue(3);
+        stackQueue.enqueue(4);
+        stackQueue.enqueue(5);
+        int dequeue = stackQueue.dequeue();
+        int peek = stackQueue.peek();
+        System.out.println(stackQueue.isEmpty());
+        System.out.println(dequeue);
+        System.out.println(peek);
     }
 }
