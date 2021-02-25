@@ -15,5 +15,9 @@ public class Main {
         for (Map.Entry<Integer, String> item : map.entrySet()) {
             System.out.println(item.getValue());
         }
+
+        String name = "Erik Rio Setiawan";
+        char firstNonRepeatedNameCharacter = Utils.findTheFirstNonRepeatedCharacter(name);
+        System.out.println(firstNonRepeatedNameCharacter);
     }
 }
