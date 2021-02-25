@@ -27,5 +27,8 @@ public class Main {
         for (int number : numbers)
             set.add(number);
         System.out.println(set);
+
+        char firstRepeatedNameCharacter = Utils.findTheFirstRepeatedCharacter(name);
+        System.out.println(firstRepeatedNameCharacter);
     }
 }
