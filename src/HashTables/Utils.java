@@ -5,20 +5,20 @@ import java.util.Map;
 
 public class Utils {
     public static char findTheFirstNonRepeatedCharacter(String sentences) {
-        Map<Character, Boolean> chars = new HashMap<>();
+        Map<Character, Integer> map = new HashMap<>();
         String lowerCaseSentences = sentences.toLowerCase();
+        char[] chars = lowerCaseSentences.toCharArray();
 
-        for (char character : lowerCaseSentences.toCharArray()) {
-            if (!chars.containsKey(character))
-                chars.put(character, true);
-            else
-                chars.put(character, false);
+        for (char character : chars) {
+            int count = map.containsKey(character) ? map.get(character) : 0;
+            map.put(character, count + 1);
         }
 
-        for (char character : lowerCaseSentences.toCharArray()) {
-            if (chars.get(character))
+        for (char character : chars) {
+            if (map.get(character) == 1)
                 return character;
         }
-        return '1';
+
+        return Character.MIN_VALUE;
     }
 }
