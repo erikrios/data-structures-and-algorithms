@@ -3,24 +3,23 @@ package arrays
 import (
 	"errors"
 	"fmt"
-	"strconv"
 	"strings"
 )
 
-type array struct {
-	items []int
+type array[T comparable] struct {
+	items []T
 }
 
-func NewArray() *array {
-	return &array{}
+func NewArray[T comparable]() *array[T] {
+	return &array[T]{}
 }
 
-func (a *array) String() string {
+func (a *array[T]) String() string {
 	builder := strings.Builder{}
 	builder.WriteByte('[')
 
 	for i := 0; i < len(a.items); i++ {
-		builder.WriteString(strconv.Itoa(a.items[i]))
+		builder.WriteString(fmt.Sprintf("%v", a.items[i]))
 		builder.WriteByte(',')
 	}
 
@@ -35,21 +34,33 @@ func (a *array) String() string {
 	}
 }
 
-func (a *array) Print() {
+func (a *array[T]) Print() {
 	fmt.Println(a)
 }
 
-func (a *array) Insert(item int) {
+func (a *array[T]) Insert(item T) {
 	a.items = append(a.items, item)
 }
 
-func (a *array) RemoveAt(index int) (err error) {
+func (a *array[T]) RemoveAt(index int) (err error) {
 	if index < 0 || index > len(a.items)-1 {
 		err = errors.New("index out of bounds")
 		return
 	}
 
-	a.items[index] = 0
 	a.items = append(a.items[:index], a.items[index+1:]...)
+	return
+}
+
+func (a *array[T]) IndexOf(item T) (index int) {
+	index = -1
+
+	for i := 0; i < len(a.items); i++ {
+		if a.items[i] == item {
+			index = i
+			return
+		}
+	}
+
 	return
 }
