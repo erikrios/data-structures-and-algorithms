@@ -112,7 +112,7 @@ func (a *array[T]) Reverse() {
 }
 
 func (a *array[T]) InsertAt(item T, index int) {
-	if index >= len(a.items) {
+	if index < 0 || index >= len(a.items) {
 		a.Insert(item)
 		return
 	}
