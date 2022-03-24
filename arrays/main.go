@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	numbers := arrays.NewArray[int]()
+	numbers := arrays.NewArray[int64]()
 	numbers.Insert(1)
 	numbers.Insert(2)
 	numbers.Insert(3)
@@ -23,4 +23,27 @@ func main() {
 
 	fmt.Println(numbers.IndexOf(1))
 	fmt.Println(numbers.IndexOf(4))
+	fmt.Println(numbers.Max())
+
+	newNumbers := arrays.NewArray[int64]()
+	newNumbers.Insert(2)
+	newNumbers.Insert(3)
+
+	fmt.Println(numbers.Intersect(newNumbers))
+
+	numbers.Reverse()
+	fmt.Println(numbers)
+	newNumbers.Reverse()
+	fmt.Println(newNumbers)
+
+	newNums := arrays.NewArray[int64]()
+	newNums.Insert(10)
+	newNums.Insert(3)
+	newNums.Insert(2)
+	newNums.Insert(18)
+	newNums.Insert(12)
+	fmt.Println(newNums)
+
+	newNums.InsertAt(5, 2)
+	fmt.Println(newNums)
 }
