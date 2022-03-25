@@ -10,6 +10,7 @@ import (
 func main() {
 	ll := linkedlist.NewLinkedList[int]()
 	fmt.Println(ll)
+	fmt.Println(ll.Size())
 	ll.AddFirst(5)
 	fmt.Println(ll)
 	ll.AddFirst(4)
@@ -22,6 +23,7 @@ func main() {
 	fmt.Println(ll)
 	fmt.Println(ll.Contains(0))
 	fmt.Println(ll.IndexOf(4))
+	fmt.Println(ll.Size())
 
 	ll2 := linkedlist.NewLinkedList[string]()
 	fmt.Println(ll2)
@@ -37,6 +39,7 @@ func main() {
 	fmt.Println(ll2)
 	fmt.Println(ll2.Contains("three"))
 	fmt.Println(ll2.IndexOf("ten"))
+	fmt.Println(ll2.Size())
 
 	ll3 := linkedlist.NewLinkedList[int8]()
 	fmt.Println(ll3)
@@ -69,6 +72,7 @@ func main() {
 	fmt.Println(ll3)
 	fmt.Println(ll3.Contains(5))
 	fmt.Println(ll3.IndexOf(4))
+	fmt.Println(ll3.Size())
 
 	ll4 := linkedlist.NewLinkedList[float32]()
 	fmt.Println(ll4)
@@ -90,4 +94,5 @@ func main() {
 	fmt.Println(ll4)
 	fmt.Println(ll4.Contains(1.5))
 	fmt.Println(ll4.IndexOf(2.4))
+	fmt.Println(ll4.Size())
 }

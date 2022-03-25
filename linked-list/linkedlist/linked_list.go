@@ -116,6 +116,17 @@ func (l *linkedList[T]) IndexOf(v T) (index int) {
 	return index
 }
 
+func (l *linkedList[T]) Size() (size int) {
+	node := l.first
+
+	for node != nil {
+		size++
+		node = node.next
+	}
+
+	return
+}
+
 func (l *linkedList[T]) isEmpty() bool {
 	return l.first == nil
 }
