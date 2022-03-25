@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/erikrios/linked-list/linkedlist"
@@ -39,15 +40,32 @@ func main() {
 
 	ll3 := linkedlist.NewLinkedList[int8]()
 	fmt.Println(ll3)
+	if err := ll3.DeleteFirst(); err != nil {
+		if errors.Is(err, linkedlist.ErrNoSuchElement) {
+			fmt.Println(err.Error())
+		}
+	}
 	ll3.AddFirst(5)
 	ll3.AddFirst(4)
 	ll3.AddFirst(3)
 	ll3.AddFirst(2)
 	ll3.AddFirst(1)
 	fmt.Println(ll3)
-	ll3.DeleteFirst()
-	ll3.DeleteFirst()
-	ll3.DeleteFirst()
+	if err := ll3.DeleteFirst(); err != nil {
+		if errors.Is(err, linkedlist.ErrNoSuchElement) {
+			fmt.Println(err.Error())
+		}
+	}
+	if err := ll3.DeleteFirst(); err != nil {
+		if errors.Is(err, linkedlist.ErrNoSuchElement) {
+			fmt.Println(err.Error())
+		}
+	}
+	if err := ll3.DeleteFirst(); err != nil {
+		if errors.Is(err, linkedlist.ErrNoSuchElement) {
+			fmt.Println(err.Error())
+		}
+	}
 	fmt.Println(ll3)
 	fmt.Println(ll3.Contains(5))
 	fmt.Println(ll3.IndexOf(4))

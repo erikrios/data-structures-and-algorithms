@@ -1,8 +1,13 @@
 package linkedlist
 
 import (
+	"errors"
 	"fmt"
 	"reflect"
+)
+
+var (
+	ErrNoSuchElement = errors.New("no such element")
 )
 
 type linkedList[T any] struct {
@@ -59,14 +64,16 @@ func (l *linkedList[T]) AddLast(v T) {
 	l.last = node
 }
 
-func (l *linkedList[T]) DeleteFirst() {
+func (l *linkedList[T]) DeleteFirst() (err error) {
 	if l.isEmpty() {
+		err = ErrNoSuchElement
 		return
 	}
 
 	temp := l.first
 	l.first = l.first.next
 	temp.next = nil
+	return
 }
 
 func (l *linkedList[T]) DeleteLast() {
