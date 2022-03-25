@@ -97,3 +97,19 @@ func (l *linkedList[T]) Contains(v T) bool {
 
 	return false
 }
+
+func (l *linkedList[T]) IndexOf(v T) (index int) {
+	index = -1
+
+	i := 0
+	for node := l.first; node != nil; node = node.next {
+		if reflect.DeepEqual(node.val, v) {
+			index = i
+			return
+		}
+
+		i++
+	}
+
+	return index
+}
