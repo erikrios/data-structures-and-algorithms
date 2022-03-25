@@ -36,7 +36,7 @@ func (l *linkedList[T]) String() (out string) {
 func (l *linkedList[T]) AddFirst(v T) {
 	node := newNode(v, nil)
 
-	if l.first == nil {
+	if l.isEmpty() {
 		l.first = node
 		l.last = node
 		return
@@ -49,7 +49,7 @@ func (l *linkedList[T]) AddFirst(v T) {
 func (l *linkedList[T]) AddLast(v T) {
 	node := newNode(v, nil)
 
-	if l.last == nil {
+	if l.isEmpty() {
 		l.first = node
 		l.last = node
 		return
@@ -60,7 +60,7 @@ func (l *linkedList[T]) AddLast(v T) {
 }
 
 func (l *linkedList[T]) DeleteFirst() {
-	if l.first == nil {
+	if l.isEmpty() {
 		return
 	}
 
@@ -68,7 +68,7 @@ func (l *linkedList[T]) DeleteFirst() {
 }
 
 func (l *linkedList[T]) DeleteLast() {
-	if l.last == nil {
+	if l.isEmpty() {
 		return
 	}
 
@@ -112,4 +112,8 @@ func (l *linkedList[T]) IndexOf(v T) (index int) {
 	}
 
 	return index
+}
+
+func (l *linkedList[T]) isEmpty() bool {
+	return l.first == nil
 }
