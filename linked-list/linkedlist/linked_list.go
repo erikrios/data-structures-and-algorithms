@@ -64,7 +64,9 @@ func (l *linkedList[T]) DeleteFirst() {
 		return
 	}
 
+	temp := l.first
 	l.first = l.first.next
+	temp.next = nil
 }
 
 func (l *linkedList[T]) DeleteLast() {
