@@ -65,3 +65,24 @@ func (l *linkedList[T]) DeleteFirst() {
 
 	l.first = l.first.next
 }
+
+func (l *linkedList[T]) DeleteLast() {
+	if l.last == nil {
+		return
+	}
+
+	if l.first == l.last {
+		l.first = nil
+		l.last = nil
+		return
+	}
+
+	prev := l.first
+
+	for prev.next != l.last {
+		prev = prev.next
+	}
+
+	prev.next = nil
+	l.last = prev
+}
