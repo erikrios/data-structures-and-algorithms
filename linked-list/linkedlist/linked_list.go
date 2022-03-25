@@ -76,8 +76,9 @@ func (l *linkedList[T]) DeleteFirst() (err error) {
 	return
 }
 
-func (l *linkedList[T]) DeleteLast() {
+func (l *linkedList[T]) DeleteLast() (err error) {
 	if l.isEmpty() {
+		err = ErrNoSuchElement
 		return
 	}
 
@@ -95,6 +96,7 @@ func (l *linkedList[T]) DeleteLast() {
 
 	prev.next = nil
 	l.last = prev
+	return
 }
 
 func (l *linkedList[T]) Contains(v T) bool {

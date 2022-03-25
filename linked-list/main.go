@@ -72,12 +72,21 @@ func main() {
 
 	ll4 := linkedlist.NewLinkedList[float32]()
 	fmt.Println(ll4)
+	if err := ll4.DeleteLast(); err != nil {
+		if errors.Is(err, linkedlist.ErrNoSuchElement) {
+			fmt.Println(err.Error())
+		}
+	}
 	ll4.AddLast(5.1)
 	ll4.AddLast(4.2)
 	ll4.AddLast(3.3)
 	ll4.AddLast(2.4)
 	ll4.AddLast(1.5)
-	ll4.DeleteLast()
+	if err := ll4.DeleteLast(); err != nil {
+		if errors.Is(err, linkedlist.ErrNoSuchElement) {
+			fmt.Println(err.Error())
+		}
+	}
 	fmt.Println(ll4)
 	fmt.Println(ll4.Contains(1.5))
 	fmt.Println(ll4.IndexOf(2.4))
