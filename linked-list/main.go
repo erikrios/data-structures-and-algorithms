@@ -32,4 +32,17 @@ func main() {
 	fmt.Println(ll2)
 	ll2.AddLast("one")
 	fmt.Println(ll2)
+
+	ll3 := linkedlist.NewLinkedList[int]()
+	fmt.Println(ll3)
+	ll3.AddFirst(5)
+	ll3.AddFirst(4)
+	ll3.AddFirst(3)
+	ll3.AddFirst(2)
+	ll3.AddFirst(1)
+	fmt.Println(ll3)
+	ll3.DeleteFirst()
+	ll3.DeleteFirst()
+	ll3.DeleteFirst()
+	fmt.Println(ll3)
 }

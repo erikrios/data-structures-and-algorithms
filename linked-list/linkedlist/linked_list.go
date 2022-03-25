@@ -57,3 +57,11 @@ func (l *linkedList[T]) AddLast(v T) {
 	l.last.next = node
 	l.last = node
 }
+
+func (l *linkedList[T]) DeleteFirst() {
+	if l.first == nil {
+		return
+	}
+
+	l.first = l.first.next
+}
