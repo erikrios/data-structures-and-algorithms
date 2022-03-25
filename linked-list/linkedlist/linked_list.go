@@ -89,13 +89,7 @@ func (l *linkedList[T]) DeleteLast() {
 }
 
 func (l *linkedList[T]) Contains(v T) bool {
-	for node := l.first; node != nil; node = node.next {
-		if reflect.DeepEqual(node.val, v) {
-			return true
-		}
-	}
-
-	return false
+	return l.IndexOf(v) != -1
 }
 
 func (l *linkedList[T]) IndexOf(v T) (index int) {
