@@ -127,6 +127,19 @@ func (l *linkedList[T]) Size() int {
 	return l.size
 }
 
+func (l *linkedList[T]) ToSlice() []T {
+	results := make([]T, l.Size())
+
+	node := l.first
+
+	for i := 0; i < len(results); i++ {
+		results[i] = node.val
+		node = node.next
+	}
+
+	return results
+}
+
 func (l *linkedList[T]) isEmpty() bool {
 	return l.first == nil
 }
