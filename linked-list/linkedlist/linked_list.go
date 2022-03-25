@@ -13,6 +13,7 @@ var (
 type linkedList[T any] struct {
 	first *node[T]
 	last  *node[T]
+	size  int
 }
 
 func NewLinkedList[T any]() *linkedList[T] {
@@ -41,6 +42,8 @@ func (l *linkedList[T]) String() (out string) {
 func (l *linkedList[T]) AddFirst(v T) {
 	node := newNode(v, nil)
 
+	l.size++
+
 	if l.isEmpty() {
 		l.first, l.last = node, node
 		return
@@ -52,6 +55,8 @@ func (l *linkedList[T]) AddFirst(v T) {
 
 func (l *linkedList[T]) AddLast(v T) {
 	node := newNode(v, nil)
+
+	l.size++
 
 	if l.isEmpty() {
 		l.first, l.last = node, node
@@ -71,6 +76,7 @@ func (l *linkedList[T]) DeleteFirst() (err error) {
 	temp := l.first
 	l.first = l.first.next
 	temp.next = nil
+	l.size--
 	return
 }
 
@@ -80,6 +86,7 @@ func (l *linkedList[T]) DeleteLast() (err error) {
 		return
 	}
 
+	l.size--
 	if l.first == l.last {
 		l.first, l.last = nil, nil
 		return
@@ -116,15 +123,8 @@ func (l *linkedList[T]) IndexOf(v T) (index int) {
 	return index
 }
 
-func (l *linkedList[T]) Size() (size int) {
-	node := l.first
-
-	for node != nil {
-		size++
-		node = node.next
-	}
-
-	return
+func (l *linkedList[T]) Size() int {
+	return l.size
 }
 
 func (l *linkedList[T]) isEmpty() bool {
