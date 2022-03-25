@@ -2,6 +2,7 @@ package linkedlist
 
 import (
 	"fmt"
+	"reflect"
 )
 
 type linkedList[T any] struct {
@@ -85,4 +86,14 @@ func (l *linkedList[T]) DeleteLast() {
 
 	prev.next = nil
 	l.last = prev
+}
+
+func (l *linkedList[T]) Contains(v T) bool {
+	for node := l.first; node != nil; node = node.next {
+		if reflect.DeepEqual(node.val, v) {
+			return true
+		}
+	}
+
+	return false
 }

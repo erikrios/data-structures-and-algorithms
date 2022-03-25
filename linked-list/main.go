@@ -19,6 +19,7 @@ func main() {
 	fmt.Println(ll)
 	ll.AddFirst(1)
 	fmt.Println(ll)
+	fmt.Println(ll.Contains(0))
 
 	ll2 := linkedlist.NewLinkedList[string]()
 	fmt.Println(ll2)
@@ -32,6 +33,7 @@ func main() {
 	fmt.Println(ll2)
 	ll2.AddLast("one")
 	fmt.Println(ll2)
+	fmt.Println(ll2.Contains("three"))
 
 	ll3 := linkedlist.NewLinkedList[int8]()
 	fmt.Println(ll3)
@@ -45,6 +47,7 @@ func main() {
 	ll3.DeleteFirst()
 	ll3.DeleteFirst()
 	fmt.Println(ll3)
+	fmt.Println(ll3.Contains(5))
 
 	ll4 := linkedlist.NewLinkedList[float32]()
 	fmt.Println(ll4)
@@ -55,4 +58,5 @@ func main() {
 	ll4.AddLast(1.5)
 	ll4.DeleteLast()
 	fmt.Println(ll4)
+	fmt.Println(ll4.Contains(1.5))
 }
