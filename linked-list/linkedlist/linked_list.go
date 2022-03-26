@@ -92,11 +92,7 @@ func (l *linkedList[T]) DeleteLast() (err error) {
 		return
 	}
 
-	prev := l.first
-
-	for prev.next != l.last {
-		prev = prev.next
-	}
+	prev := l.getPrevious(l.last)
 
 	prev.next = nil
 	l.last = prev
@@ -140,6 +136,36 @@ func (l *linkedList[T]) ToSlice() []T {
 	return results
 }
 
+func (l *linkedList[T]) Reverse() {
+	if l.isEmpty() || l.first == l.last {
+		return
+	}
+
+	current := l.last
+	for prev := l.getPrevious(current); prev != nil; prev = l.getPrevious(current) {
+		current.next = prev
+		current = prev
+	}
+
+	l.first.next = nil
+
+	l.first, l.last = l.last, l.first
+}
+
 func (l *linkedList[T]) isEmpty() bool {
 	return l.first == nil
+}
+
+func (l *linkedList[T]) getPrevious(n *node[T]) *node[T] {
+	if l.isEmpty() || l.first == l.last || n == l.first {
+		return nil
+	}
+
+	prev := l.first
+
+	for prev.next != n {
+		prev = prev.next
+	}
+
+	return prev
 }

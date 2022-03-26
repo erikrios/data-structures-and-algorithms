@@ -100,4 +100,15 @@ func main() {
 	fmt.Println(ll4.IndexOf(2.4))
 	fmt.Println(ll4.Size())
 	fmt.Println(ll4.ToSlice())
+
+	ll5 := linkedlist.NewLinkedList[float64]()
+	fmt.Println(ll5)
+	ll5.AddFirst(9.3)
+	ll5.AddFirst(10.5)
+	ll5.AddFirst(11.4)
+	ll5.AddFirst(12.8)
+	ll5.AddFirst(13.9)
+	fmt.Println(ll5)
+	ll5.Reverse()
+	fmt.Println(ll5)
 }
