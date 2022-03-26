@@ -137,19 +137,23 @@ func (l *linkedList[T]) ToSlice() []T {
 }
 
 func (l *linkedList[T]) Reverse() {
-	if l.isEmpty() || l.first == l.last {
+	if l.isEmpty() {
 		return
 	}
 
-	current := l.last
-	for prev := l.getPrevious(current); prev != nil; prev = l.getPrevious(current) {
-		current.next = prev
-		current = prev
+	prev := l.first
+	cur := l.first.next
+
+	for cur != nil {
+		next := cur.next
+		cur.next = prev
+		prev = cur
+		cur = next
 	}
 
-	l.first.next = nil
-
-	l.first, l.last = l.last, l.first
+	l.last = l.first
+	l.last.next = nil
+	l.first = prev
 }
 
 func (l *linkedList[T]) isEmpty() bool {
