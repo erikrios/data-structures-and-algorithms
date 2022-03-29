@@ -111,4 +111,10 @@ func main() {
 	fmt.Println(ll5)
 	ll5.Reverse()
 	fmt.Println(ll5)
+	fmt.Println(ll5.GetKthFromTheEnd(1))
+	fmt.Println(ll5.GetKthFromTheEnd(2))
+	fmt.Println(ll5.GetKthFromTheEnd(3))
+	fmt.Println(ll5.GetKthFromTheEnd(4))
+	fmt.Println(ll5.GetKthFromTheEnd(5))
+	fmt.Println(ll5.GetKthFromTheEnd(6))
 }

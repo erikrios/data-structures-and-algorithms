@@ -8,6 +8,7 @@ import (
 
 var (
 	ErrNoSuchElement = errors.New("no such element")
+	ErrOutOfRange    = errors.New("out of range")
 )
 
 type linkedList[T any] struct {
@@ -154,6 +155,36 @@ func (l *linkedList[T]) Reverse() {
 	l.last = l.first
 	l.last.next = nil
 	l.first = prev
+}
+
+func (l *linkedList[T]) GetKthFromTheEnd(k int) (val T, err error) {
+	if k > l.size {
+		err = ErrOutOfRange
+		return
+	}
+
+	if k == 1 {
+		val = l.last.val
+		return
+	}
+
+	left, right, dist := l.first, l.first, k-1
+	for {
+		right = left
+
+		for i := 0; i < dist; i++ {
+			right = right.next
+		}
+
+		if right.next == nil {
+			val = left.val
+			return
+		}
+
+		left = left.next
+	}
+
+	return
 }
 
 func (l *linkedList[T]) isEmpty() bool {
