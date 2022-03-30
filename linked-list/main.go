@@ -119,4 +119,9 @@ func main() {
 	fmt.Println(ll5.GetKthFromTheEnd(6))
 
 	ll5.PrintMiddle()
+	fmt.Println(ll5.HasLoop())
+
+	ll6 := linkedlist.CreateWithLoop()
+	fmt.Println(ll6.HasLoop())
+
 }

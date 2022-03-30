@@ -21,6 +21,24 @@ func NewLinkedList[T any]() *linkedList[T] {
 	return &linkedList[T]{}
 }
 
+func CreateWithLoop() *linkedList[int] {
+	list := NewLinkedList[int]()
+	list.AddLast(10)
+	list.AddLast(20)
+	list.AddLast(30)
+
+	// Get a reference to 30
+	node := list.last
+
+	list.AddLast(40)
+	list.AddLast(50)
+
+	// Create the loop
+	list.last.next = node
+
+	return list
+}
+
 func (l *linkedList[T]) String() (out string) {
 	node := l.first
 
@@ -202,6 +220,21 @@ func (l *linkedList[T]) PrintMiddle() {
 	} else {
 		fmt.Println(a.val, ",", a.next.val)
 	}
+}
+
+func (l *linkedList[T]) HasLoop() bool {
+	slow, fast := l.first, l.first
+
+	for fast != nil && fast.next != nil {
+		slow = slow.next
+		fast = fast.next.next
+
+		if slow == fast {
+			return true
+		}
+	}
+
+	return false
 }
 
 func (l *linkedList[T]) isEmpty() bool {
