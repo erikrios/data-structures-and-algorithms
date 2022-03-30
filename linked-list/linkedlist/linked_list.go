@@ -158,32 +158,28 @@ func (l *linkedList[T]) Reverse() {
 }
 
 func (l *linkedList[T]) GetKthFromTheEnd(k int) (val T, err error) {
-	if k > l.size {
+	if l.isEmpty() {
 		err = ErrOutOfRange
 		return
 	}
 
-	if k == 1 {
-		val = l.last.val
-		return
-	}
+	a := l.first
+	b := l.first
 
-	left, right, dist := l.first, l.first, k-1
-	for {
-		right = left
-
-		for i := 0; i < dist; i++ {
-			right = right.next
-		}
-
-		if right.next == nil {
-			val = left.val
+	for i := 0; i < k-1; i++ {
+		b = b.next
+		if b == nil {
+			err = ErrOutOfRange
 			return
 		}
-
-		left = left.next
 	}
 
+	for b != l.last {
+		a = a.next
+		b = b.next
+	}
+
+	val = a.val
 	return
 }
 
