@@ -117,4 +117,6 @@ func main() {
 	fmt.Println(ll5.GetKthFromTheEnd(4))
 	fmt.Println(ll5.GetKthFromTheEnd(5))
 	fmt.Println(ll5.GetKthFromTheEnd(6))
+
+	ll5.PrintMiddle()
 }

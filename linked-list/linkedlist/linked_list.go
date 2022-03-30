@@ -183,6 +183,27 @@ func (l *linkedList[T]) GetKthFromTheEnd(k int) (val T, err error) {
 	return
 }
 
+func (l *linkedList[T]) PrintMiddle() {
+	if l.isEmpty() {
+		fmt.Println(ErrOutOfRange.Error())
+		return
+	}
+
+	a := l.first
+	b := l.first
+
+	for b != l.last && b.next != l.last {
+		b = b.next.next
+		a = a.next
+	}
+
+	if b == l.last {
+		fmt.Println(a.val)
+	} else {
+		fmt.Println(a.val, ",", a.next.val)
+	}
+}
+
 func (l *linkedList[T]) isEmpty() bool {
 	return l.first == nil
 }
