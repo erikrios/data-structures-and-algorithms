@@ -98,4 +98,45 @@ func main() {
 	fmt.Println(queue.IsFull())
 
 	fmt.Println(queue)
+
+	fmt.Println("Circular Array Queue")
+	var caq queues.Queue[int] = queues.NewCircularArrayQueue[int](5)
+
+	if err := caq.Enqueue(50); err != nil {
+		fmt.Println("enqueue error:", err.Error())
+	}
+
+	if err := caq.Enqueue(40); err != nil {
+		fmt.Println("enqueue error:", err.Error())
+	}
+
+	if err := caq.Enqueue(30); err != nil {
+		fmt.Println("enqueue error:", err.Error())
+	}
+
+	if err := caq.Enqueue(20); err != nil {
+		fmt.Println("enqueue error:", err.Error())
+	}
+
+	if err := caq.Enqueue(10); err != nil {
+		fmt.Println("enqueue error:", err.Error())
+	}
+
+	if err := caq.Enqueue(50); err != nil {
+		fmt.Println("enqueue error:", err.Error())
+	}
+
+	if dequeued, err := caq.Dequeue(); err != nil {
+		fmt.Println("dequeued error:", err.Error())
+	} else {
+		fmt.Println("dequeued:", dequeued)
+	}
+
+	if peeked, err := caq.Peek(); err != nil {
+		fmt.Println("peeked error:", err.Error())
+	} else {
+		fmt.Println("peeked:", peeked)
+	}
+
+	fmt.Println(caq)
 }
