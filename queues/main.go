@@ -139,4 +139,50 @@ func main() {
 	}
 
 	fmt.Println(caq)
+
+	fmt.Println("Queue with Two Stacks")
+
+	var qwts queues.Queue[int] = queues.NewQueueWithTwoStacks[int]()
+
+	if err := qwts.Enqueue(50); err != nil {
+		fmt.Println("enqueue error:", err.Error())
+	}
+
+	if err := qwts.Enqueue(40); err != nil {
+		fmt.Println("enqueue error:", err.Error())
+	}
+
+	if err := qwts.Enqueue(30); err != nil {
+		fmt.Println("enqueue error:", err.Error())
+	}
+
+	if err := qwts.Enqueue(20); err != nil {
+		fmt.Println("enqueue error:", err.Error())
+	}
+
+	if err := qwts.Enqueue(10); err != nil {
+		fmt.Println("enqueue error:", err.Error())
+	}
+
+	fmt.Println(qwts)
+
+	if peeked, err := qwts.Peek(); err != nil {
+		fmt.Println("peeked error:", err.Error())
+	} else {
+		fmt.Println("peeked:", peeked)
+	}
+
+	if dequeued, err := qwts.Dequeue(); err != nil {
+		fmt.Println("dequeued error:", err.Error())
+	} else {
+		fmt.Println("dequeued:", dequeued)
+	}
+
+	if dequeued, err := qwts.Dequeue(); err != nil {
+		fmt.Println("dequeued error:", err.Error())
+	} else {
+		fmt.Println("dequeued:", dequeued)
+	}
+
+	fmt.Println(qwts)
 }
