@@ -5,7 +5,7 @@ import "errors"
 type Queue[T any] interface {
 	Enqueue(item T) error
 	Dequeue() (item T, err error)
-	Peek() T
+	Peek() (item T, err error)
 	IsEmpty() bool
 	IsFull() bool
 }

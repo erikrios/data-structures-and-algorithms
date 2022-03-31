@@ -43,7 +43,15 @@ func (a *arrayQueue[T]) Enqueue(item T) error {
 
 func (a *arrayQueue[T]) Dequeue() (item T, err error) { return }
 
-func (a *arrayQueue[T]) Peek() T { return a.items[0] }
+func (a *arrayQueue[T]) Peek() (item T, err error) {
+	if a.IsEmpty() {
+		err = ErrQueueEmpty
+		return
+	}
+
+	item = a.items[a.front]
+	return
+}
 
 func (a *arrayQueue[T]) IsEmpty() bool {
 	return a.front == -1 && a.rear == -1

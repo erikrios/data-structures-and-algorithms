@@ -12,21 +12,62 @@ func main() {
 	fmt.Println(queue.IsEmpty())
 	fmt.Println(queue.IsFull())
 
+	if peeked, err := queue.Peek(); err != nil {
+		fmt.Println(err.Error())
+	} else {
+		fmt.Println(peeked)
+	}
+
 	if err := queue.Enqueue(5); err != nil {
 		fmt.Println(err.Error())
 	}
+
+	if peeked, err := queue.Peek(); err != nil {
+		fmt.Println(err.Error())
+	} else {
+		fmt.Println(peeked)
+	}
+
 	if err := queue.Enqueue(4); err != nil {
 		fmt.Println(err.Error())
 	}
+
+	if peeked, err := queue.Peek(); err != nil {
+		fmt.Println(err.Error())
+	} else {
+		fmt.Println(peeked)
+	}
+
 	if err := queue.Enqueue(3); err != nil {
 		fmt.Println(err.Error())
 	}
+
+	if peeked, err := queue.Peek(); err != nil {
+		fmt.Println(err.Error())
+	} else {
+		fmt.Println(peeked)
+	}
+
 	if err := queue.Enqueue(2); err != nil {
 		fmt.Println(err.Error())
 	}
+
+	if peeked, err := queue.Peek(); err != nil {
+		fmt.Println(err.Error())
+	} else {
+		fmt.Println(peeked)
+	}
+
 	if err := queue.Enqueue(1); err != nil {
 		fmt.Println(err.Error())
 	}
+
+	if peeked, err := queue.Peek(); err != nil {
+		fmt.Println(err.Error())
+	} else {
+		fmt.Println(peeked)
+	}
+
 	if err := queue.Enqueue(0); err != nil {
 		fmt.Println(err.Error())
 	}
