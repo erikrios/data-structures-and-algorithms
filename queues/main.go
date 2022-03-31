@@ -185,4 +185,52 @@ func main() {
 	}
 
 	fmt.Println(qwts)
+
+	fmt.Println("\nPriority Queue")
+
+	var pq queues.Queue[int] = queues.NewPriorityQueue[int]()
+
+	if err := pq.Enqueue(20); err != nil {
+		fmt.Println("enqueue error:", err.Error())
+	}
+
+	if err := pq.Enqueue(15); err != nil {
+		fmt.Println("enqueue error:", err.Error())
+	}
+
+	if err := pq.Enqueue(25); err != nil {
+		fmt.Println("enqueue error:", err.Error())
+	}
+
+	if peeked, err := pq.Peek(); err != nil {
+		fmt.Println("peeked error:", err.Error())
+	} else {
+		fmt.Println("peeked:", peeked)
+	}
+
+	if dequeued, err := pq.Dequeue(); err != nil {
+		fmt.Println("dequeued error:", err.Error())
+	} else {
+		fmt.Println("dequeued:", dequeued)
+	}
+
+	if dequeued, err := pq.Dequeue(); err != nil {
+		fmt.Println("dequeued error:", err.Error())
+	} else {
+		fmt.Println("dequeued:", dequeued)
+	}
+
+	if dequeued, err := pq.Dequeue(); err != nil {
+		fmt.Println("dequeued error:", err.Error())
+	} else {
+		fmt.Println("dequeued:", dequeued)
+	}
+
+	if dequeued, err := pq.Dequeue(); err != nil {
+		fmt.Println("dequeued error:", err.Error())
+	} else {
+		fmt.Println("dequeued:", dequeued)
+	}
+
+	fmt.Println(pq)
 }
