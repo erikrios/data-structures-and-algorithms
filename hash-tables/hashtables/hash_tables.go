@@ -63,6 +63,7 @@ func (h *hashTable[K, V]) Remove(key K) {
 	for _, entry := range entries {
 		if key == entry.key {
 			h.list[hashed].Remove(entry)
+			return
 		}
 	}
 }
