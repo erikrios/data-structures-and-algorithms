@@ -8,4 +8,5 @@ import (
 
 func main() {
 	fmt.Println(string(exercise.FirstNonRepeatingChar("a green apple")))
+	fmt.Println(string(exercise.FirstRepeatedChar("a green apple")))
 }
