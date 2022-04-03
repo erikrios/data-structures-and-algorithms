@@ -38,4 +38,26 @@ func main() {
 	fmt.Println()
 	fmt.Println(newTree.Height())
 	fmt.Println(newTree.Min())
+
+	treeOne := binarytrees.NewTree[int]()
+	treeOne.Insert(5)
+	treeOne.Insert(3)
+	treeOne.Insert(2)
+	treeOne.Insert(10)
+	treeOne.Insert(8)
+	treeOne.Insert(12)
+
+	treeTwo := binarytrees.NewTree[int]()
+	treeTwo.Insert(5)
+	treeTwo.Insert(3)
+	treeTwo.Insert(2)
+	treeTwo.Insert(10)
+	treeTwo.Insert(8)
+	treeTwo.Insert(12)
+
+	fmt.Println(treeOne.Equals(treeTwo))
+	fmt.Println(tree.IsBinarySearchTree())
+	nodeValues := tree.GetNodesAtDistance(1)
+	fmt.Println(nodeValues)
+	tree.TraverseLevelOrder()
 }

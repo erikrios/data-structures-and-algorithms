@@ -156,3 +156,68 @@ func (t *Tree[T]) min(root *node[T]) T {
 func (t *Tree[T]) isLeaf(root *node[T]) bool {
 	return root.leftChild == nil && root.rightChild == nil
 }
+
+func (t *Tree[T]) Equals(other *Tree[T]) bool {
+	if other == nil {
+		return false
+	}
+
+	return t.equals(t.root, other.root)
+}
+
+func (t *Tree[T]) equals(first, second *node[T]) bool {
+	if first == nil && second == nil {
+		return true
+	}
+
+	if first != nil && second != nil {
+		return first.val == second.val &&
+			t.equals(first.leftChild, second.leftChild) &&
+			t.equals(first.rightChild, second.rightChild)
+	}
+
+	return false
+}
+
+func (t *Tree[T]) IsBinarySearchTree() bool {
+	return t.isBinarySearchTree(t.root, T(0), T(127))
+}
+
+func (t *Tree[T]) isBinarySearchTree(root *node[T], min, max T) bool {
+	if root == nil {
+		return true
+	}
+
+	if root.val < min || root.val > max {
+		return false
+	}
+
+	return t.isBinarySearchTree(root.leftChild, min, root.val-1) && t.isBinarySearchTree(root.rightChild, root.val+1, max)
+}
+
+func (t *Tree[T]) GetNodesAtDistance(distance int) (nodeValues []T) {
+	t.printNodesAtDistance(t.root, distance, &nodeValues)
+	return
+}
+
+func (t *Tree[T]) printNodesAtDistance(root *node[T], distance int, nodeValues *[]T) {
+	if root == nil {
+		return
+	}
+
+	if distance == 0 {
+		*nodeValues = append(*nodeValues, root.val)
+		return
+	}
+
+	t.printNodesAtDistance(root.leftChild, distance-1, nodeValues)
+	t.printNodesAtDistance(root.rightChild, distance-1, nodeValues)
+}
+
+func (t *Tree[T]) TraverseLevelOrder() {
+	for i := 0; i <= t.Height(); i++ {
+		for _, v := range t.GetNodesAtDistance(i) {
+			fmt.Printf("%v ", v)
+		}
+	}
+}
