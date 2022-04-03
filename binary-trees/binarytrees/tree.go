@@ -105,7 +105,7 @@ func (t *Tree[T]) height(root *node[T]) int {
 		return -1
 	}
 
-	if root.leftChild == nil && root.rightChild == nil {
+	if t.isLeaf(root) {
 		return 0
 	}
 
@@ -119,4 +119,40 @@ func (t *Tree[T]) height(root *node[T]) int {
 	}
 
 	return 1 + max
+}
+
+func (t *Tree[T]) Min() T {
+	return t.min(t.root)
+}
+
+func (t *Tree[T]) min(root *node[T]) T {
+	if root == nil {
+		return T(100)
+	}
+	if t.isLeaf(root) {
+		return root.val
+	}
+
+	left := t.min(root.leftChild)
+	right := t.min(root.rightChild)
+
+	var minRightOrLeft T
+	if left < right {
+		minRightOrLeft = left
+	} else {
+		minRightOrLeft = right
+	}
+
+	var minimum T
+	if minRightOrLeft < root.val {
+		minimum = minRightOrLeft
+	} else {
+		minimum = root.val
+	}
+
+	return minimum
+}
+
+func (t *Tree[T]) isLeaf(root *node[T]) bool {
+	return root.leftChild == nil && root.rightChild == nil
 }

@@ -37,4 +37,5 @@ func main() {
 	newTree.TraversePostOrder()
 	fmt.Println()
 	fmt.Println(newTree.Height())
+	fmt.Println(newTree.Min())
 }
