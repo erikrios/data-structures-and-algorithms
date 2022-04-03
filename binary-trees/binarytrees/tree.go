@@ -1,6 +1,8 @@
 package binarytrees
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Tree[T Number] struct {
 	root *node[T]
@@ -92,4 +94,29 @@ func (t *Tree[T]) traversePostOrder(root *node[T]) {
 	t.traversePostOrder(root.leftChild)
 	t.traversePostOrder(root.rightChild)
 	fmt.Printf("%v ", root.val)
+}
+
+func (t *Tree[T]) Height() int {
+	return t.height(t.root)
+}
+
+func (t *Tree[T]) height(root *node[T]) int {
+	if root == nil {
+		return -1
+	}
+
+	if root.leftChild == nil && root.rightChild == nil {
+		return 0
+	}
+
+	maxLeft := t.height(root.leftChild)
+	maxRight := t.height(root.rightChild)
+	var max int
+	if maxLeft > maxRight {
+		max = maxLeft
+	} else {
+		max = maxRight
+	}
+
+	return 1 + max
 }
