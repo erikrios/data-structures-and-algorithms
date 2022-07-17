@@ -1,6 +1,8 @@
 package binarytrees
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestNewTree(t *testing.T) {
 	t.Run("it should return not nill instance, when creating instance with NewTree method", func(t *testing.T) {
@@ -126,6 +128,32 @@ func TestInsert(t *testing.T) {
 
 		if gotLeftChild != expectedLeftLeaf || gotRightChild != expectedRightLeaf {
 			t.Fatalf("got %d and %d, want %d and %d", gotLeftChild, gotRightChild, expectedLeftLeaf, expectedRightLeaf)
+		}
+	})
+}
+
+func TestFind(t *testing.T) {
+	t.Run("it should return false, when value not exists in tree", func(t *testing.T) {
+		expected := false
+		tree := NewTree[int]()
+		got := tree.Find(5)
+
+		if got != expected {
+			t.Fatalf("got %v, want %v", got, expected)
+		}
+	})
+
+	t.Run("it should return true, when value exists in tree", func(t *testing.T) {
+		expected := true
+		tree := NewTree[int]()
+		tree.Insert(8)
+		tree.Insert(3)
+		tree.Insert(5)
+		tree.Insert(10)
+		got := tree.Find(5)
+
+		if got != expected {
+			t.Fatalf("got %v, want %v", got, expected)
 		}
 	})
 }
