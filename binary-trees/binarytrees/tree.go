@@ -17,21 +17,19 @@ func (t *Tree[T]) Insert(val T) {
 	}
 
 	currentNode := t.root
-	for currentNode != nil {
+	for {
 		if val < currentNode.val {
 			if currentNode.leftChild == nil {
 				currentNode.leftChild = node
 				break
-			} else {
-				currentNode = currentNode.leftChild
 			}
+			currentNode = currentNode.leftChild
 		} else if val > currentNode.val {
 			if currentNode.rightChild == nil {
 				currentNode.rightChild = node
 				break
-			} else {
-				currentNode = currentNode.rightChild
 			}
+			currentNode = currentNode.rightChild
 		}
 	}
 }
