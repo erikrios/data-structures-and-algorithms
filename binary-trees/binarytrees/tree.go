@@ -35,3 +35,17 @@ func (t *Tree[T]) Insert(val T) {
 		}
 	}
 }
+
+func (t *Tree[T]) Find(val T) bool {
+	currentNode := t.root
+	for currentNode != nil {
+		if val < currentNode.val {
+			currentNode = currentNode.leftChild
+		} else if val > currentNode.val {
+			currentNode = currentNode.rightChild
+		} else {
+			return true
+		}
+	}
+	return false
+}
