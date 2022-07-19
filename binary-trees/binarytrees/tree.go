@@ -1,5 +1,7 @@
 package binarytrees
 
+import "fmt"
+
 type Tree[T Number] struct {
 	root *node[T]
 }
@@ -46,4 +48,18 @@ func (t *Tree[T]) Find(val T) bool {
 		}
 	}
 	return false
+}
+
+func (t *Tree[T]) TraversePreOrder() {
+	t.traversePreOrder(t.root)
+}
+
+func (t *Tree[T]) traversePreOrder(root *node[T]) {
+	if root == nil {
+		return
+	}
+
+	fmt.Print(root.val, " ")
+	t.traversePreOrder(root.leftChild)
+	t.traversePreOrder(root.rightChild)
 }
