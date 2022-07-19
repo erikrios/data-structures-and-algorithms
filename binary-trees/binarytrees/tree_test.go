@@ -187,3 +187,18 @@ func TestTraverseInOrder(t *testing.T) {
 
 	tree.TraverseInOrder()
 }
+
+func TestTraversePostOrder(t *testing.T) {
+	tree := NewTree[int]()
+	tree.Insert(20)
+	tree.Insert(10)
+	tree.Insert(30)
+	tree.Insert(6)
+	tree.Insert(14)
+	tree.Insert(24)
+	tree.Insert(3)
+	tree.Insert(8)
+	tree.Insert(26)
+
+	tree.TraversePostOrder()
+}
