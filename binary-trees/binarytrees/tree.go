@@ -63,3 +63,17 @@ func (t *Tree[T]) traversePreOrder(root *node[T]) {
 	t.traversePreOrder(root.leftChild)
 	t.traversePreOrder(root.rightChild)
 }
+
+func (t *Tree[T]) TraverseInOrder() {
+	t.traverseInOrder(t.root)
+}
+
+func (t *Tree[T]) traverseInOrder(root *node[T]) {
+	if root == nil {
+		return
+	}
+
+	t.traverseInOrder(root.leftChild)
+	fmt.Print(root.val, " ")
+	t.traverseInOrder(root.rightChild)
+}
