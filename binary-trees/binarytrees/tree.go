@@ -2,6 +2,7 @@ package binarytrees
 
 import (
 	"fmt"
+	"math"
 )
 
 type Tree[T Number] struct {
@@ -12,45 +13,43 @@ func NewTree[T Number]() *Tree[T] {
 	return &Tree[T]{root: nil}
 }
 
-func (t *Tree[T]) Insert(value T) {
-	newNode := &node[T]{val: value}
+func (t *Tree[T]) Insert(val T) {
+	node := &node[T]{val: val}
 
 	if t.root == nil {
-		t.root = newNode
+		t.root = node
 		return
 	}
 
-	current := t.root
+	currentNode := t.root
 	for {
-		if value < current.val {
-			if current.leftChild == nil {
-				current.leftChild = newNode
+		if val < currentNode.val {
+			if currentNode.leftChild == nil {
+				currentNode.leftChild = node
 				break
 			}
-			current = current.leftChild
-		} else {
-			if current.rightChild == nil {
-				current.rightChild = newNode
+			currentNode = currentNode.leftChild
+		} else if val > currentNode.val {
+			if currentNode.rightChild == nil {
+				currentNode.rightChild = node
 				break
 			}
-			current = current.rightChild
+			currentNode = currentNode.rightChild
 		}
 	}
 }
 
-func (t *Tree[T]) Find(value T) bool {
-	current := t.root
-
-	for current != nil {
-		if value == current.val {
-			return true
-		} else if value < current.val {
-			current = current.leftChild
+func (t *Tree[T]) Find(val T) bool {
+	currentNode := t.root
+	for currentNode != nil {
+		if val < currentNode.val {
+			currentNode = currentNode.leftChild
+		} else if val > currentNode.val {
+			currentNode = currentNode.rightChild
 		} else {
-			current = current.rightChild
+			return true
 		}
 	}
-
 	return false
 }
 
@@ -63,7 +62,7 @@ func (t *Tree[T]) traversePreOrder(root *node[T]) {
 		return
 	}
 
-	fmt.Printf("%v ", root.val)
+	fmt.Print(root.val, " ")
 	t.traversePreOrder(root.leftChild)
 	t.traversePreOrder(root.rightChild)
 }
@@ -78,7 +77,7 @@ func (t *Tree[T]) traverseInOrder(root *node[T]) {
 	}
 
 	t.traverseInOrder(root.leftChild)
-	fmt.Printf("%v ", root.val)
+	fmt.Print(root.val, " ")
 	t.traverseInOrder(root.rightChild)
 }
 
@@ -93,7 +92,7 @@ func (t *Tree[T]) traversePostOrder(root *node[T]) {
 
 	t.traversePostOrder(root.leftChild)
 	t.traversePostOrder(root.rightChild)
-	fmt.Printf("%v ", root.val)
+	fmt.Print(root.val, " ")
 }
 
 func (t *Tree[T]) Height() int {
@@ -109,16 +108,11 @@ func (t *Tree[T]) height(root *node[T]) int {
 		return 0
 	}
 
-	maxLeft := t.height(root.leftChild)
-	maxRight := t.height(root.rightChild)
-	var max int
-	if maxLeft > maxRight {
-		max = maxLeft
-	} else {
-		max = maxRight
-	}
+	return 1 + int(math.Max(float64(t.height(root.leftChild)), float64(t.height(root.rightChild))))
+}
 
-	return 1 + max
+func (t *Tree[T]) isLeaf(node *node[T]) bool {
+	return node.leftChild == nil && node.rightChild == nil
 }
 
 func (t *Tree[T]) Min() T {
@@ -129,6 +123,7 @@ func (t *Tree[T]) min(root *node[T]) T {
 	if root == nil {
 		return T(100)
 	}
+
 	if t.isLeaf(root) {
 		return root.val
 	}
@@ -151,10 +146,6 @@ func (t *Tree[T]) min(root *node[T]) T {
 	}
 
 	return minimum
-}
-
-func (t *Tree[T]) isLeaf(root *node[T]) bool {
-	return root.leftChild == nil && root.rightChild == nil
 }
 
 func (t *Tree[T]) Equals(other *Tree[T]) bool {
@@ -192,7 +183,8 @@ func (t *Tree[T]) isBinarySearchTree(root *node[T], min, max T) bool {
 		return false
 	}
 
-	return t.isBinarySearchTree(root.leftChild, min, root.val-1) && t.isBinarySearchTree(root.rightChild, root.val+1, max)
+	return t.isBinarySearchTree(root.leftChild, min, root.val-1) &&
+		t.isBinarySearchTree(root.rightChild, root.val+1, max)
 }
 
 func (t *Tree[T]) GetNodesAtDistance(distance int) (nodeValues []T) {
