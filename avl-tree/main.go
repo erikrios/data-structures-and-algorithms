@@ -1,7 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"avl-tree/avltree"
+)
 
 func main() {
-	fmt.Println("vim-go")
+	avlTree := avltree.NewAVLTree()
+	avlTree.Insert(30)
+	avlTree.Insert(20)
+	avlTree.Insert(10)
 }
