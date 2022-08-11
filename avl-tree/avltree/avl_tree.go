@@ -1,8 +1,6 @@
 package avltree
 
-import (
-	"fmt"
-)
+import "fmt"
 
 type aVLNode struct {
 	leftChild  *aVLNode
@@ -49,13 +47,7 @@ func (a *AVLTree) insert(item int, root *aVLNode) *aVLNode {
 
 	root.height = height + 1
 
-	_ = a.balanceFactor(root)
-
-	if a.isLeftHeavy(root) {
-		fmt.Println(root.value, "is left heavy")
-	} else if a.isRightHeavy(root) {
-		fmt.Println(root.value, "is right heavy")
-	}
+	a.balance(root)
 
 	return root
 }
@@ -81,5 +73,19 @@ func (a *AVLTree) height(node *aVLNode) int {
 		return -1
 	} else {
 		return node.height
+	}
+}
+
+func (a *AVLTree) balance(root *aVLNode) {
+	if a.isLeftHeavy(root) {
+		if a.balanceFactor(root.leftChild) < 0 {
+			fmt.Println("Left rotate", root.leftChild.value)
+		}
+		fmt.Println("Right rotate", root.value)
+	} else if a.isRightHeavy(root) {
+		if a.balanceFactor(root.rightChild) > 0 {
+			fmt.Println("Right rotate", root.rightChild.value)
+		}
+		fmt.Println("Left rotate", root.value)
 	}
 }
