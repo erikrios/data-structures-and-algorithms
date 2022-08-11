@@ -4,6 +4,7 @@ type aVLNode struct {
 	leftChild  *aVLNode
 	rightChild *aVLNode
 	value      int
+	height     int
 }
 
 type AVLTree struct {
@@ -31,5 +32,26 @@ func (a *AVLTree) insert(item int, root *aVLNode) *aVLNode {
 		root.rightChild = a.insert(item, root.rightChild)
 	}
 
+	var height int
+
+	right := a.height(root.rightChild)
+	left := a.height(root.leftChild)
+
+	if left < right {
+		height = right
+	} else {
+		height = left
+	}
+
+	root.height = height + 1
+
 	return root
+}
+
+func (a *AVLTree) height(node *aVLNode) int {
+	if node == nil {
+		return 0
+	} else {
+		return node.height
+	}
 }
