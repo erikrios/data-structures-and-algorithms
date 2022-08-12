@@ -12,5 +12,6 @@ func main() {
 	heap.Insert(17)
 	heap.Insert(4)
 	heap.Insert(22)
+	heap.Remove()
 	fmt.Println("Done", heap)
 }
