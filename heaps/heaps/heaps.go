@@ -41,6 +41,14 @@ func (h *Heap) Remove() (int, error) {
 	return root, nil
 }
 
+func (h *Heap) Max() (int, error) {
+	if h.isEmpty() {
+		return 0, errors.New("The items is empty")
+	}
+
+	return h.items[0], nil
+}
+
 func (h *Heap) swap(first, second int) {
 	h.items[first], h.items[second] = h.items[second], h.items[first]
 }

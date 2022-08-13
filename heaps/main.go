@@ -16,6 +16,7 @@ func main() {
 	fmt.Println("Done", heap)
 
 	numbers := []int{5, 3, 8, 4, 1, 2}
+	fmt.Println(heaps.GetKthLargest(numbers, 2))
 	heaps.Heapify(numbers)
 	fmt.Println(numbers)
 }
