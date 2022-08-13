@@ -14,4 +14,8 @@ func main() {
 	heap.Insert(22)
 	heap.Remove()
 	fmt.Println("Done", heap)
+
+	numbers := []int{5, 3, 8, 4, 1, 2}
+	heaps.Heapify(numbers)
+	fmt.Println(numbers)
 }
