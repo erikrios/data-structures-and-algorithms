@@ -9,12 +9,12 @@ type node struct {
 }
 
 func (n *node) hasChild(c char) bool {
-	_, ok := n.children[char(c)]
+	_, ok := n.children[c]
 	return ok
 }
 
 func (n *node) addChild(c char) {
-	n.children[c] = &node{val: char(c), children: make(map[char]*node)}
+	n.children[c] = &node{val: c, children: make(map[char]*node)}
 }
 
 func (n *node) getChild(c char) *node {
@@ -29,4 +29,12 @@ func (n *node) getChildren() []*node {
 	}
 
 	return children
+}
+
+func (n *node) hasChildren() bool {
+	return !(len(n.children) == 0)
+}
+
+func (n *node) removeChild(c char) {
+	delete(n.children, c)
 }

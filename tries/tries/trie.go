@@ -47,6 +47,29 @@ func (t *Trie) Traverse() {
 	traverse(t.root)
 }
 
+func (t *Trie) Remove(word string) {
+	remove(t.root, word, 0)
+}
+
+func remove(n *node, word string, index int) {
+	if index == len(word) {
+		n.isEndOfWord = false
+		return
+	}
+
+	c := word[index]
+	child := n.getChild(char(c))
+	if child == nil {
+		return
+	}
+
+	remove(child, word, index+1)
+
+	if !child.hasChildren() && !child.isEndOfWord {
+		n.removeChild(char(c))
+	}
+}
+
 func (t *Trie) String() string {
 	var result string
 
