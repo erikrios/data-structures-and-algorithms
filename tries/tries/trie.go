@@ -22,10 +22,25 @@ func (t *Trie) Insert(word string) {
 		if !cur.hasChild(char(c)){
 			cur.addChild(char(c))
 		} 
-			cur = cur.getChild(char(c))
+		
+		cur = cur.getChild(char(c))
 	}
 
 	cur.isEndOfWord = true
+}
+
+func (t *Trie) Contains(word string) bool {
+	cur := t.root
+	for i := 0; i < len(word); i++ {
+		c := word[i]
+		if !cur.hasChild(char(c)) {
+			return false
+		}
+
+		cur = cur.getChild(char(c))
+	}
+
+	return cur.isEndOfWord 
 }
 
 func (t *Trie) String() string {

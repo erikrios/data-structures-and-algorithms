@@ -13,4 +13,9 @@ func main() {
 
 	trie.Insert("car")
 	fmt.Println(trie)
+
+	trie.Insert("canada")
+	fmt.Println(trie.Contains(""))
+	fmt.Println(trie.Contains("can"))
+	fmt.Println(trie.Contains("canada"))
 }
