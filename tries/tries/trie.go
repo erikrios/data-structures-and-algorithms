@@ -70,6 +70,43 @@ func remove(n *node, word string, index int) {
 	}
 }
 
+func (t *Trie) FindWords(prefix string) []string {
+	words := make([]string, 0)
+	lastNode := t.findLastNodeOf(prefix)
+	findWords(lastNode, prefix, &words)
+
+	return words
+}
+
+func findWords(n *node, prefix string, words *[]string) {
+	if n == nil {
+		return
+	}
+
+	if n.isEndOfWord {
+		*words = append(*words, prefix)
+	}
+
+	for _, child:= range n.getChildren() {
+		findWords(child, prefix+string(child.val), words)
+	}
+}
+
+func (t *Trie) findLastNodeOf(prefix string) *node {
+	current := t.root
+
+	for i := 0; i < len(prefix); i++ {
+		c := prefix[i]
+		child := current.getChild(char(c))
+		if child == nil {
+			return nil
+		}
+		current = child
+	}
+
+	return current
+}
+
 func (t *Trie) String() string {
 	var result string
 

@@ -28,4 +28,10 @@ func main() {
 	trie.Traverse()
 	fmt.Println(trie.Contains("doctor"))
 	fmt.Println(trie.Contains("doctoral"))
+
+	trie.Insert("card")
+	trie.Insert("care")
+	trie.Insert("careful")
+
+	fmt.Println(trie.FindWords("car"))
 }
