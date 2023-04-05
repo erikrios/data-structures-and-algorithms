@@ -10,6 +10,7 @@ func New() *Trie {
 	return &Trie{
 		root: &node{
 			val:         ' ',
+			children: make(map[char]*node),
 			isEndOfWord: true,
 		},
 	}
@@ -19,19 +20,19 @@ func (t *Trie) Insert(word string) {
 	cur := t.root
 	for i := 0; i < len(word); i++ {
 		c := word[i]
-		index := c - 'a'
-		if n := cur.children[index]; n == nil {
+		if n, ok := cur.children[char(c)]; !ok{
 			n = &node{
 				val:         char(c),
+			children: make(map[char]*node),
 				isEndOfWord: true,
 			}
 			cur.isEndOfWord = false
-			cur.children[index] = n
+			cur.children[char(c)] = n
 			cur = n
 		} else {
 			n.isEndOfWord = true
 			cur.isEndOfWord = false
-			cur.children[index] = n
+			cur.children[char(c)] = n
 			cur = n
 		}
 	}
@@ -51,8 +52,7 @@ func traverse(n *node) {
 	}
 
 	fmt.Println("-", string(n.val), *n)
-	for i := 0; i < len(n.children); i++ {
-		child := n.children[i]
-		traverse(child)
+	for _, v := range n.children{
+		traverse(v)
 	}
 }
