@@ -18,4 +18,8 @@ func main() {
 	fmt.Println(trie.Contains(""))
 	fmt.Println(trie.Contains("can"))
 	fmt.Println(trie.Contains("canada"))
+
+	trie.Insert("awesome")
+
+	trie.Traverse()
 }

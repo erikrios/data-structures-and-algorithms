@@ -43,6 +43,10 @@ func (t *Trie) Contains(word string) bool {
 	return cur.isEndOfWord 
 }
 
+func (t *Trie) Traverse() {
+	traverse(t.root)
+}
+
 func (t *Trie) String() string {
 	var result string
 
@@ -52,12 +56,13 @@ func (t *Trie) String() string {
 }
 
 func traverse(n *node) {
-	if n == nil {
-		return
-	}
+	// Pre-order traversal
+	fmt.Println(string(n.val))
 
-	fmt.Println("-", string(n.val), *n)
-	for _, v := range n.children{
+	for _, v := range n.getChildren() {
 		traverse(v)
 	}
+
+	// Post-order traversal
+	// fmt.Println(string(n.val))
 }

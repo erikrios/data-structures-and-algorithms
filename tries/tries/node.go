@@ -20,3 +20,13 @@ func (n *node) addChild(c char) {
 func (n *node) getChild(c char) *node {
 	return n.children[c]
 }
+
+func (n *node) getChildren() []*node {
+	children := make([]*node, 0, len(n.children))
+	
+	for _, v := range n.children {
+		children = append(children, v)
+	}
+
+	return children
+}
