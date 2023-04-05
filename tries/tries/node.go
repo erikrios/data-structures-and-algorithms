@@ -7,3 +7,16 @@ type node struct {
 	children    map[char]*node
 	isEndOfWord bool
 }
+
+func (n *node) hasChild(c char) bool {
+	_, ok := n.children[char(c)]
+	return ok
+}
+
+func (n *node) addChild(c char) {
+	n.children[c] = &node{val: char(c), children: make(map[char]*node)}
+}
+
+func (n *node) getChild(c char) *node {
+	return n.children[c]
+}

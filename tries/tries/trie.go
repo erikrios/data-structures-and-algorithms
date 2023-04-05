@@ -11,7 +11,6 @@ func New() *Trie {
 		root: &node{
 			val:         ' ',
 			children: make(map[char]*node),
-			isEndOfWord: true,
 		},
 	}
 }
@@ -20,22 +19,13 @@ func (t *Trie) Insert(word string) {
 	cur := t.root
 	for i := 0; i < len(word); i++ {
 		c := word[i]
-		if n, ok := cur.children[char(c)]; !ok{
-			n = &node{
-				val:         char(c),
-			children: make(map[char]*node),
-				isEndOfWord: true,
-			}
-			cur.isEndOfWord = false
-			cur.children[char(c)] = n
-			cur = n
-		} else {
-			n.isEndOfWord = true
-			cur.isEndOfWord = false
-			cur.children[char(c)] = n
-			cur = n
-		}
+		if !cur.hasChild(char(c)){
+			cur.addChild(char(c))
+		} 
+			cur = cur.getChild(char(c))
 	}
+
+	cur.isEndOfWord = true
 }
 
 func (t *Trie) String() string {
